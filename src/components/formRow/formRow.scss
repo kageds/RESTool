@@ -63,10 +63,10 @@
   > textarea, 
   > input[type=url], 
   > input[type=number], 
-  > input[type=date], 
+  > input[type=datetime-local], 
   > input[type=email], 
   > input[type=password], 
-  > input[type=date] {
+  > input[type=datetime-local] {
     width: 100%;
     padding: 9px;
     border: 1px solid rgba(0,0,0,0.1);
@@ -113,7 +113,7 @@
     padding-right: 25px;
   }
 
-  input[type=date] {
+  input[type=datetime-local] {
     font-family: 'Open Sans', sans-serif;
   }
 

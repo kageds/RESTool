@@ -237,7 +237,7 @@ const PageComp = ({ context }: IProps) => {
     const result = await httpService.fetch({
       method: params.actualMethod || 'get',
       origUrl: params.url,
-      queryParams,
+      queryParams: initQueryParams,
       headers: Object.assign({}, pageHeaders, params.requestHeaders || {})
     });
     let extractedData = dataHelpers.extractDataByDataPath(result, params.dataPath);
@@ -331,7 +331,7 @@ const PageComp = ({ context }: IProps) => {
     return await httpService.fetch({
       method: actualMethod || 'post',
       origUrl: url,
-      queryParams,
+      queryParams: initQueryParams,
       body: containFiles ? body : JSON.stringify(body),
       headers: {
         ...pageHeaders,

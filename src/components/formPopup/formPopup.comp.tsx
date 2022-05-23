@@ -154,7 +154,9 @@ export const FormPopup = withAppContext(({ context, title, fields, rawData, getS
         return;
       }
 
-      finalObject[field.name] = field.value;
+      if (field.type !== 'date') {
+        finalObject[field.name] = field.value;
+      }
 
       if (containFiles && !field.useInUrl) {
         formData.append(field.name, field.value);
@@ -175,6 +177,13 @@ export const FormPopup = withAppContext(({ context, title, fields, rawData, getS
 
       if (field.type === 'boolean') {
         finalObject[field.name] = field.value || false;
+      }
+
+      if (field.type === 'date') {
+        var d = new Date(field.value);
+        if (d.toString() !== 'Invalid Date') {
+          finalObject[field.name] = d.toISOString();
+        }
       }
 
       if (field.type === 'encode') {

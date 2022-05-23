@@ -1,6 +1,6 @@
 import { TConfigMethod, IQueryParam } from '../common/models/config.model';
 import { dataHelpers } from '../helpers/data.helpers';
-
+import Cookies from 'universal-cookie';
 export type ResponseType = 'json' | 'text' | 'boolean' | 'status';
 
 export interface IFetchParams {
@@ -81,9 +81,13 @@ class HttpService {
   private buildRequest(params: IFetchParams): { url: string, params: any } {
     const reqUrl: string = this.urlIsAbsolute(params.origUrl) ? params.origUrl : this.baseUrl + params.origUrl;
     const finalUrl: string = this.buildUrl(reqUrl, params.queryParams, params.rawData);
+    const cookies = new Cookies();
+    const baseParams = cookies.get('access_token') ? {
+      Authorization: 'Bearer ' + cookies.get('access_token')
+    } : {};
     const requestParams = {
       method: params.method ? params.method.toUpperCase() : 'GET',
-      headers: Object.assign({}, this.requestHeaders, params.headers || {}),
+      headers: Object.assign(baseParams, this.requestHeaders, params.headers || {}),
       body: params.method === 'post' || params.method === 'put' || params.method === 'patch' ? params.body : undefined
     };
 

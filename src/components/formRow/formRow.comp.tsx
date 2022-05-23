@@ -310,7 +310,7 @@ export const FormRow = withAppContext(({ context, field, direction, showReset, o
       case 'note':
         return <p className="note">{field.value}</p>;
       case 'date':
-        return <input type="date" {...inputProps(customLabels?.placeholders?.date || 'Enter date...')} />;
+        return <input type="datetime-local" {...inputProps(customLabels?.placeholders?.date || 'Enter date...')} />;
       case 'text':
       default:
         return <input type="text" {...inputProps(customLabels?.placeholders?.text || 'Enter text...')} />;

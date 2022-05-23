@@ -73,7 +73,7 @@
       }
     }
 
-    input[type=text], select, textarea, input[type=url], input[type=number], input[type=date], input[type=email], input[type=password] {
+    input[type=text], select, textarea, input[type=url], input[type=number], input[type=datetime-local], input[type=email], input[type=password] {
       border-radius: 0 3px 3px 0;
 
       &:focus {
